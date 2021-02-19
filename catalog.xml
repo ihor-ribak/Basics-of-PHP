@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<catalog>
+    <book>
+        <title cover="images/c.jpg">C</title>
+        <category>Компілюючі</category>
+    </book>
+    <book>
+        <title cover="images/java.jpg">Java</title>
+        <category>Компілюючі</category>
+    </book>
+    <book>
+        <title cover="images/vb.jpg">Visual Basic</title>
+        <category>Компілюючі</category>
+    </book>
+    <book>
+        <title cover="images/pyt.jpg">Python</title>
+        <category>Компілюючі</category>
+    </book>
+    <book>
+        <title cover="images/an.jpg">Android</title>
+        <category>Інші</category>
+    </book>
+</catalog>

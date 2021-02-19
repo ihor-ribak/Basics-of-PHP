@@ -1,0 +1,1862 @@
+<footer>
+    <p>Підвал сторінки</p>
+</footer>
+</body>
+</html>
+<! DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> <?php echo $page_title;?> </title>
+    <link rel="stylesheet" href="includes/style.css">
+</head>
+
+<body>
+<header><h1>Шапка сторінки</h1></header>
+header > h1 {
+    border-bottom: 1px dashed black;
+    font-style: italic;
+    font-size: x-large;
+}
+
+footer > p {
+    border-top: 1px dashed black;
+    font-style: italic;
+}
+
+table {
+    border-spacing: 5px;
+    width: 530px;
+}
+
+th {
+    color: #FFF;
+    background: #000;
+    text-align: left;
+}
+
+td {
+    border-bottom: 1px solid black;
+    padding: 3px;
+    background: #F0F0F0;
+    text-align: left;
+    vertical-align: top;
+}
+
+p#err_msg {
+    color: #F00;
+    font-weight: bold;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Интерактивная PHP форма</title>
+</head>
+<body>
+<form action="action_handler.php" method="POST">
+    <dl>
+        <dt>Имя:</dt>
+        <dd><input type="text" name="name"></dd>
+        <dt>Адрес email:</dt>
+        <dd><input type="text" name="mail"</dd>
+        <dt>Примечание:</dt>
+        <dd><textarea rows="5" cols="20" name="comment" ></textarea></dd>
+    </dl>
+    <p><input type="submit" ></p>
+</form>
+</body>
+</html>
+<?php
+
+$name = $_POST['name'];
+$mail = $_POST['mail'];
+$comment = $_POST['comment'];
+echo "<p>Благодарим за примечание, $name ...</p>";
+echo "<p><i>$comment</i></p>";
+echo "<p>Ответ будет отправлен на адрес $mail</p>";
+?>
+<?php
+
+$info = "\r\n\r\n\tБаллада Рєдингской тюрьми";
+$info .= "\r\n\t\t\tОскар Уайлд, 1898";
+
+$filename = 'poem.txt';
+$filestream = fopen($filename, 'a')
+    or die('Невозможно открить файл!');
+$num = fwrite($filestream, $info);
+if ($num)
+{
+    echo "$num байт записано в файл $filename";
+}
+fclose($filestream);
+<?php
+
+$a = $b = 5;
+
+function modify(int $val, int &$ref)
+{
+    echo "Передані значення: $val, $ref<hr>";
+    $val++;
+    $ref++;
+    echo "Інкрементировані значення: $val, $ref<hr>";
+}
+modify($a, $b);
+echo "Збережені значення: $a, $b";
+<?php
+
+$a = 2;
+$b = 5;
+
+$result = $a + $b; echo "Додавання: $result <br>";
+$result = $a - $b; echo "Віднімання: $result <br>";
+$result = $a * $b; echo "Множення: $result <br>";
+$result = $a / $b; echo "Ділення: $result <br>";
+$result = $a % $b; echo "Ділення по модулю: $result <br>";
+$result = $a ** $b; echo "Піднесення до степеня: $result <br>";
+<?php
+$days = array('Понеділок', 'Вівторок', 'Середа');
+foreach ($days as $value)
+{
+    echo "&bull; $value ";
+}
+$months = array('січ' => 'Січень', 'лют' => 'Лютий', 'бер' => 'Березень');
+echo '<dl>';
+foreach ($months as $key => $value)
+{
+    echo "<dt>$key<dd>$value";
+}
+echo '</dl>';
+
+$ten = range(1, 10);
+$alf = range(a, z);
+foreach ($ten as $value)
+{
+    echo "$value<br>";
+}
+foreach ($alf as $value)
+{
+    echo "$value<br>";
+}
+<?php
+
+echo '<title>PHP - Простий XML</title>';
+$xml = simplexml_load_file('catalog.xml')
+or die('Неможливо загрузити дані!');
+echo 'Перша книжка: '.$xml->book[0]->title.' для початківців<br>';
+echo 'Обложка: '.$xml->book[0]->title['cover'].'<br>';
+echo '<img src="'.$xml->book[0]->title['cover'].'">';
+<?php
+
+echo '<title>PHP - Простий XML</title>';
+$xml = simplexml_load_file('catalog.xml')
+or die('Неможливо загрузити дані!');
+
+$counter = 0;
+foreach ($xml->children() as $book)
+{
+    $counter++;
+    echo ' '.$counter.': ';
+    echo '<img src="'.$book->title['cover'].'">';
+}
+<?php
+
+$x = 5;
+$y = 10;
+echo "X: $x, Y: $y <br>";
+$x = $x ^ $y; /* 1010 ^ 0101 = 1111 (десяткове 15) */
+$y = $x ^ $y; /* 1111 ^ 0101 = 1010 (десяткове 10) */
+$x = $x ^ $y; /* 1111 ^ 1010 = 0101 (десяткове 5) */
+echo "X: $x, Y: $y <br>";
+<?php
+
+for ($i = 1; $i < 4; $i++)
+{
+    for($j = 1; $j < 4; $j++)
+    {
+        if ($i == 1 && $j == 1)
+        {
+            echo "Продовжувати внутрішній цикл, якщо i = $i та j = $j <br>";
+            continue;
+        }
+        if ($i == 2 && $j == 1)
+        {
+            echo "Прирвати внутрішній цикл, якщо i = $i та j = $j <br>";
+            break;
+        }
+        echo "Виконано i = $i та j = $j <br>";
+    }
+}
+<?php
+
+$hello = function ($user)
+{
+    echo "Привет, $user!<br>";
+};
+
+$hello('Ігор');
+
+function greet(callable $anon)
+{
+    $anon('Анька');
+}
+
+greet($hello);
+
+function meet(): callable
+{
+    $time = 'ранок';
+    return function ($name) use(&$time)
+    {return "Добрий $time, $name!";};
+}
+
+$meeting = meet();
+echo $meeting('Анька');
+<?php
+
+$str = "C++ Programming is easy steps";
+echo "Исходная строка: '$str' <hr>";
+$ver = strtolower($str);
+echo "Строчние букви: '$ver' <br>";
+$ver = strtoupper($str);
+echo "Прописні букви: '$ver' <hr>";
+$ver = ucfirst($str);
+echo "Прописна перша буква першого слова: '$ver' <br>";
+echo 'Прописна перша буква кожного слова: '.ucwords($ver);
+<?php
+
+echo '<title>PHP - Простий XML</title><pre>';
+$xml = simplexml_load_file('catalog.xml')
+    or die('Неможливо загрузити дані!');
+var_dump($xml);
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<catalog>
+    <book>
+        <title cover="images/c.jpg">C</title>
+        <category>Компілюючі</category>
+    </book>
+    <book>
+        <title cover="images/java.jpg">Java</title>
+        <category>Компілюючі</category>
+    </book>
+    <book>
+        <title cover="images/vb.jpg">Visual Basic</title>
+        <category>Компілюючі</category>
+    </book>
+    <book>
+        <title cover="images/pyt.jpg">Python</title>
+        <category>Компілюючі</category>
+    </book>
+    <book>
+        <title cover="images/an.jpg">Android</title>
+        <category>Інші</category>
+    </book>
+</catalog>
+<?php
+
+$a = $b = $c = $d = 5;
+echo "++A: ". ++$a. "<br>--B: ". --$b ."<hr>";
+echo "C++ ". $c++. "[тепер C: ". $c ."]<br>";
+echo "D--: ". $d--. "[тепер D: ". $d ."]<hr>";
+
+$bool = true and false;
+var_dump($bool);
+echo "<br>";
+$bool = true && false;
+var_dump($bool);
+<?php
+
+$str1 = 'PHP для начинащих';
+$str2 = 'PHP для начинащих';
+$str3 = 'PHP Для Начинащих';
+$str4 = 'php для начинащих';
+
+echo "'$str1' в порівнянні з '$str2': ".strcmp($str1, $str2).'<br>';
+echo "'$str1' в порівнянні з '$str3': ".strcmp($str1, $str3).'<br>';
+echo "'$str1' в порівнянні з '$str4': ".strcmp($str1, $str4).'<hr>';
+
+echo 'Порівняння без врахування регістру:<br>';
+echo "'$str1' в порівнянні з '$str4': ".strcasecmp($str1, $str4).'<hr>';
+
+$total = 0;
+for ($i = 0; $i < strlen($str1); $i++)
+{
+    $total += ord($str1[$i]);
+}
+echo "<hr>Об'єм ASCII коду $str1: $total";
+<?php
+
+$zero = 0;
+$nil = 0;
+$one = 1;
+$upr = 'A';
+$lwr = 'a';
+echo "0 == 0: "; var_dump($zero == $nil);
+echo "<br>0 == 1: "; var_dump($zero == $one);
+echo "<br>A == a: "; var_dump($upr == $lwr);
+echo "<br>A != a: "; var_dump($upr != $lwr);
+echo "<hr>1 > 0: "; var_dump($one > $nil);
+echo "<br>0 >= 0: "; var_dump($zero >= $nil);
+echo "<br>1 <= 0: "; var_dump($one <= $nil);
+echo "<hr>1 <=> 0: "; var_dump($one <=> $nil);
+echo "<hr>1 <=> 1: "; var_dump($one <=> $one);
+echo "<hr>0 <=> 1: "; var_dump($nil <=> $one);
+<?php
+
+$dbc =
+    mysqli_connect('localhost', 'igor', 'Password3', 'website_db')
+    OR die(mysqli_connect_error());
+mysqli_set_charset($dbc, 'utf-8');
+<?php
+
+define('USER', 'Ігорян');
+define('PETS', ['котенок', 'щенок', 'хомячок']);
+echo '<p>Привет, '. USER. '. Как поживает твой '. PETS[1]. '?</p>';
+echo '<p>Ти используешь движок PHP версии '. PHP_VERSION;
+echo ', запущений в '. PHP_OS. '</p>';
+<?php
+
+class Dog
+{
+    /**
+     * @var
+     */
+    private $age;
+    /**
+     * @var
+     */
+    private $weight;
+    /**
+     * @var
+     */
+    private $color;
+
+    /**
+     *
+     */
+    public function bark()
+    {
+        echo "ГАВ! ГАВ! <br>";
+    }
+
+    function __construct(int $yrs = 2, int $lbs = 8, string $fur = 'черного ')
+    {
+        $this->age = $yrs;
+        $this->weight = $lbs;
+        $this->color = $fur;
+    }
+
+    function __destruct()
+    {
+        echo "Об'єкт знищений!";
+    }
+
+    /**
+     * @return int
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+}
+
+$fido = new Dog(3, 15, 'коричневого ');
+
+echo 'Шерсть Фидо '.$fido->getColor().' цвета<br>';
+echo 'Фидо '.$fido->getAge().' года<br>';
+echo 'Фидо весит '.$fido->getWeight().' кг<br>';
+$fido->bark();
+
+$pooch = new Dog(4, 18, 'серого ');
+echo "<hr>Дворняжка: ".$pooch->getAge().' года ';
+echo $pooch->getWeight().' кг '.$pooch->getColor();
+$pooch->bark();
+
+$rover = new Dog();
+echo '<hr>Рик: '.$rover->getAge().' года ';
+echo $rover->getWeight().' кг '.$rover->getColor();
+$rover->bark();
+
+$items = get_class_vars('Dog');
+echo "<br>Переменние класса Dog: ".count($items);
+echo "<br>Методи класса Dog: ";
+$items = get_class_methods('Dog');
+foreach ($items as $item)
+{
+    echo "$item, ";
+}
+<?php
+
+if (count($_COOKIE) > 0)
+{
+    echo '<dl> ';
+    foreach ($_COOKIE as $key => $value)
+    {
+        echo "<dt>Ключ: $key";
+        echo "<dd>Значення: $value";
+    }
+    echo '</dl><hr>';
+    var_dump($_COOKIE);
+}
+else
+{
+    echo 'Будь ласка, <a href="cookie_form.html">авторизуйтесь</a>';
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Cookie і форма</title>
+</head>
+<body>
+<form name="entry" method="POST" action="cookie_set.php">
+    <fieldset>
+        <legend>Вводьте тільки букви і цифри</legend>
+        Имя: <input type="text" name="user" >
+        Пароль: <input type="password" name="pass" >
+        <br>
+        <br>
+        <input type="submit" value="Авторизуватися" >
+    </fieldset>
+</form>
+</body>
+</html>
+<?php
+
+if(isset($_COOKIE['user']))
+{
+    $user = $_COOKIE['user'];
+    echo "<h1>Ласкаво просимо, $user!</h1><hr>";
+    echo '<a href="cookie_data.php">Перегляд cookie</a>';
+}
+else
+{
+    echo 'Будь ласка, <a href="cookie_form.html">авторизуйтесь</a>';
+}
+<?php
+
+function reject($entry)
+{
+    echo "Недопустимо: $entry <br>";
+    echo 'Будь ласка, <a href="cookie_form.html"> авторизуйтесь</a>';
+    exit();
+}
+
+if(isset($_POST['user']))
+{
+    $user = trim($_POST['user']);
+    if(!ctype_alnum($user))
+    {
+        reject('Імя користувача');
+    }
+
+    if(isset($_POST['pass']))
+    {
+        $pass = trim($_POST['pass']);
+        if(!ctype_alnum($pass)) {reject('Пароль');}
+        else
+        {
+            setcookie('user', $user, time()+3600);
+            setcookie('pass', md5($pass), time()+3600);
+            header('Location: cookie_get.php');
+        }
+    }
+}
+else
+{
+    header('Location: cookie_form.html');
+}
+<?php
+
+require ('connect_db.php');
+
+$sql = 'CREATE TABLE IF NOT EXISTS forum ('.
+'post_id INT UNSIGNED NOT NULL AUTO_INCREMENT,'.
+'first_name VARCHAR(20) NOT NULL,'.
+'last_name VARCHAR(40) NOT NULL,'.
+'subject VARCHAR(60) NOT NULL,'.
+'message TEXT NOT NULL,'.
+'post_date DATETIME NOT NULL,'.
+'PRIMARY KEY (post_id))';
+
+if (mysqli_query($dbc, $sql) ===TRUE)
+{
+    echo 'Таблиця "forum" успішно створена';
+}
+else
+{
+    'Помилка створення таблиці: '.mysqli_error($dbc);
+}
+
+mysqli_close($dbc);
+<?php
+
+echo 'Дата: '.date('jS F Y').'<br>';
+echo 'День неділі: '.date('l').'<br>';
+echo 'Час: '.date('h: i: s a').'<br>';
+echo 'Часовий пояс: '.date_default_timezone_get().'<hr>';
+date_default_timezone_set('Europe/London');
+echo 'Теперішній часовий пояс: '.date_default_timezone_get();
+echo "<br>теперішній час: ".date('h: i: s').'<hr>';
+$d = strtotime('tomorrow');
+echo 'Завтра: '.date('l, jS F Y', $d).'<br>';
+$d = strtotime('August 18, 1979');
+echo 'День народження Михаила: '.date('jS F', $d);
+<?php
+
+if (4 > 2)
+{
+    echo "<p>Да, 4 більше, чим 2 <br>";
+}
+
+if ((4 > 2) && (8 >4))
+{
+    echo "4 більше, чим 2, а 8 більше, чим 4<br>";
+}
+
+if (4 > 8)
+{
+    echo "4 більше 8<br>";
+}
+else
+{
+    echo "4 менше 8<br>";
+}
+
+if (4 > 8)
+{
+    echo "Цей вираз вірний</p>";
+}
+elseif (8 > 4)
+{
+    echo "Додатковий вираз вірний</p>";
+}
+else
+{
+    echo "Обидва вирази хибні</p>";
+}
+<?php
+
+$html = '<script>window.location="index.html"</script>';
+
+$html = htmlspecialchars($html);
+echo $html;
+<?php
+
+function error_handler($level, $message)
+{
+    switch ($level)
+    {
+        case 2: $str = 'Внимание!';
+        break;
+        case 8: $str = 'Предуприждение!';
+        break;
+        default: $str = 'Ошибка';
+    }
+    echo "<b>$str</b><br>$message<hr>";
+}
+set_error_handler('error_handler');
+echo ($var);
+$file = fopen('nonsuch.txt', 'r');
+$number = 2;
+if ($number >= 1)
+{
+    trigger_error('Числове значення должно бить 1 или менше');
+}
+<?php
+
+function check_size($num)
+{
+    if($num < 10)
+    {
+        throw new Exception("Число: $num<br>Значення должно бить больше 10");
+    }
+}
+try {check_size(5);}
+catch (Exception $e)
+{
+    echo '<b>Исключение размера!</b><br>'.$e->getMessage().'<hr>';
+}
+
+class CustomException extends Exception
+{
+    public function get_details()
+    {
+        $details = 'Файл: '.$this->getFile().'<br>Строка: '.$this->getLine().'<br>'.$this->getMessage();
+        return $details;
+    }
+
+    public function check_parity($num)
+    {
+        if ($num% 2!== 0)
+        {
+            throw new CustomException("Число: $num<br>Значение должно бить четним!");
+        }
+    }
+}
+<?php
+
+$hdr = '<h1 style="color: red">PHP для начинающих</h1>';
+echo $hdr;
+
+$hdr = filter_var($hdr, FILTER_SANITIZE_STRING);
+echo "Отфильтрований заголовок: $hdr";
+
+function validate($email)
+{
+    if (filter_var($email, FILTER_VALIDATE_EMAIL))
+    {
+        echo ("<hr>$email - ДОПУСТИМИЙ адрес електронной почти");
+    }
+    else
+    {
+        echo ("<hr>$email - НЕДОПУСТИМИЙ адрес електронной почти");
+    }
+}
+
+$email = 'mike @example.com';
+validate($email);
+$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+validate($email);
+<?php
+
+for ($i = 1; $i < 4; $i++)
+{
+    echo "<dt>Ітерація зовнішнього циклу $i";
+    for ($j = 1; $j < 4; $j++)
+    {
+        echo "<dd>Ітерація внутрішнього циклу $j";
+    }
+}
+<?php
+
+$str = '| PHP String Fun |';
+echo "Исходная строка: $str";
+echo "<hr>Обращенная строка: ".strrev($str);
+echo "<hr>Повторяющаяся строка: ".str_repeat($str, 3);
+echo "<hr>Обрезаная строка: ".trim($str, '|');
+$pad = str_pad($str, 30, '*', STR_PAD_LEFT);
+echo "<hr>Подстановка символов: $pad";
+echo "<hr>Разделение строки: ";
+$token = strtok($str, ' ');
+while ($token)
+{
+    echo "$token ... ";
+    $token = strtok(' ');
+}
+<?php
+
+$page_title = 'PHP - форум';
+
+include ('includes/header.html');
+require ('connect_db.php');
+
+$sql = 'SELECT * FROM forum';
+$result = mysqli_query($dbc, $sql);
+if (mysqli_num_rows($result) > 0)
+{
+    echo '<table style="width: 300px; border: 1px solid black;"><tr colspan="2" bgcolor="#D3EDF6" align="center"><th>Автор</th><th>Тема</th><th id="msg">Повідомлення</th></tr>';
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+    {
+        echo '<tr><td bgcolor="green">'.
+        $row['first_name'].' '.
+        $row['last_name'].'<br>'.
+        $row['post_date'].'</td><td bgcolor="green">'.
+        $row['subject'].'</td><td bgcolor="green">'.
+        $row['message'].'</td></tr>';
+    }
+    echo '</table>';
+}
+else
+{
+    echo '<p>В даний час повідомлень немає.</p>';
+}
+
+echo '<p><a href="post.php">Написати повідомлення</a></p>';
+mysqli_close($dbc);
+include ('includes/footer.html');
+<?php
+
+function greet()
+{
+    echo "Hello!<br>";
+}
+
+greet();
+
+function outer()
+{
+    function inner()
+    {
+        echo "Встроєна функція визвана!<br>";
+    }
+    echo "Встроєна функція створена!<br>";
+}
+
+outer();
+inner();
+<?php
+
+date_default_timezone_set('UTC');
+$time = date(' H: i, j F ');
+$user = 'Ігор';
+echo '
+<form action="hidden_handler.php" method="POST">
+<fieldset>
+<legend>Оставте коментарий</legend>
+<textarea rows="5" cols="20" name="comment">
+</textarea>
+<input type="hidden" name="user" value=" '. $user .' ">
+<input type="hidden" name="time" value=" '. $time.' ">
+</fieldset>
+<p><input type="submit" ></p>
+</form>
+';
+<?php
+if (!empty($_POST['comment']))
+{
+    $comment = $_POST['comment'];
+}
+else
+{
+    $comment = NULL;
+    echo 'Необходимо указать коментарий';
+}
+
+$time = (!isset ($_POST['time']))? NULL: $_POST['time'];
+$user = (!isset ($_POST['user']))? NULL: $_POST['user'];
+
+if (($comment!= NULL) && ($time!= NULL)  && ($user!= NULL))
+{
+    echo "<p>Получен комментарий: \" $comment \"<br>От $user в $time </p>";
+}
+<?php
+
+$num = 3;
+
+if ($num > 5)
+{
+    echo "$num більше 5<br>";
+}
+
+if ($num <= 5)
+{
+    echo "$num менше 6<br>";
+}
+
+if ($num% 2 == 0)
+{
+    echo "$num - парне<br>";
+}
+
+if ($num% 2 != 0)
+{
+    echo "$num - не парне<br>";
+}
+<?php
+
+$page_title = 'PHP - включення';
+include ('includes/header.html');
+echo '<form action="include.php" method="POST">
+<p>Имя: <input type="text" name="name"> </p>
+<p>Email: <input type="text" name="email"> </p>
+<p><input type="submit"></p>
+</form>';
+include ('includes/footer.html');
+?>
+<?php
+
+class Polygon
+{
+    private $widht, $height;
+
+    function __construct(int $w = 4, int $h = 5)
+    {
+        $this->widht = $w;
+        $this->height = $h;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWidht(): int
+    {
+        return $this->widht;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+}
+
+class Rectangle extends Polygon
+{
+    public function area()
+    {
+        return ($this->getWidht() * $this->getHeight());
+    }
+
+}
+
+class Triangle extends Polygon
+{
+    public function area()
+    {
+        return ($this->getWidht() * $this->getHeight() / 2);
+    }
+}
+
+$rect = new Rectangle();
+$trio = new Triangle();
+echo "Площа прямокутника: ".$rect->area().'<hr>';
+echo "Площа трикутника: ".$trio->area();
+<?php
+
+class Dog
+{
+    /**
+     * @var
+     */
+    private $age;
+    /**
+     * @var
+     */
+    private $weight;
+    /**
+     * @var
+     */
+    private $color;
+
+    /**
+     *
+     */
+    public function bark()
+    {
+        echo "ГАВ! ГАВ! <br>";
+    }
+
+    public function setValues(int $yrs = 2, int $lbs = 8, string $fur = 'черного ')
+    {
+        $this->age = $yrs;
+        $this->weight = $lbs;
+        $this->color = $fur;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+}
+
+$fido = new Dog();
+$fido->setValues(3, 15, 'коричневого');
+
+echo 'Шерсть Фидо '.$fido->getColor().' цвета<br>';
+echo 'Фидо '.$fido->getAge().' года<br>';
+echo 'Фидо весит '.$fido->getWeight().' кг<br>';
+$fido->bark();
+
+$pooch = new Dog();
+$pooch->setValues(4, 18, 'серого ');
+echo "<hr>Дворняжка: ".$pooch->getAge().' года ';
+echo $pooch->getWeight().' кг '.$pooch->getColor();
+$pooch->bark();
+
+$rover = new Dog();
+$rover->setValues();
+echo '<hr>Рик: '.$rover->getAge().' года ';
+echo $rover->getWeight().' кг '.$rover->getColor();
+$rover->bark();
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PHP проверка данних</title>
+</head>
+<body>
+<form action="isset_handler.php" method="POST">
+    <fieldset>
+        <legend>К какому типу относится язик PHP ?</legend>
+        Структурний<input type="radio" name="definition" value="Структурний"> <br>
+        Процедурний<input type="radio" name="definition" value="Процедурний"> <br>
+        Обьектно ориентированний<input type="radio" name="definition" value="Обьектно ориентированний"> <br>
+    </fieldset>
+    <p><input type="submit" ></p>
+</form>
+</body>
+</html>
+<?php
+if (isset($_POST[definition]))
+{
+    $definition = $_POST['definition'];
+}
+else
+{
+    $definition = NULL;
+}
+
+if ($definition!= NULL)
+{
+    if ($definition!= 'Обьектно ориентированний')
+    {
+        echo "$definition = неправильно!";
+    }
+    else
+    {
+        echo "$definition = правильно!";
+    }
+}
+else
+{
+    echo "Ви должни вибрать один из вариантов ответа!";
+}
+?>
+<?php
+
+if (isset($_GET['id']))
+{
+    $id = $_GET['id'];
+    switch ($id)
+    {
+        case 1: echo 'Вибрана корова<hr>';
+        break;
+        case 2: echo 'Вибрана лошадь<hr>';
+        break;
+        case 3: echo 'Вибрана коза<hr>';
+        break;
+    }
+}
+
+echo '<h1>Виберіть тварину</h1>';
+echo '  <p><a href="link.php?id=1">Корова</a> |';
+echo '  <p><a href="link.php?id=2">Лошадь</a> |';
+echo '  <p><a href="link.php?id=3">Коза</a></p>';
+<?php
+
+$yes = TRUE;
+$no = FALSE;
+$result = ($no && $no)? 'TRUE': 'FALSE';
+echo "no І no поверне $result <br>";
+$result = ($yes && $no)? 'TRUE': 'FALSE';
+echo "yes І no поверне $result <br>";
+$result = ($yes && $yes)? 'TRUE': 'FALSE';
+echo "yes І yes поверне $result <hr>";
+$result = ($no || $no)? 'TRUE': 'FALSE';
+echo "no Або no поверне $result <br>";
+$result = ($yes || $no)? 'TRUE': 'FALSE';
+echo "yes Або no поверне $result <br>";
+$result = ($yes || $yes)? 'TRUE': 'FALSE';
+echo "yes Або yes поверне $result <hr>";
+$result = (! $yes)? 'TRUE': 'FALSE';
+echo "Не yes поверне $result <hr>";
+<?php
+
+$letters = array('A', 'B', 'C');
+$numbers = array('1', '2', '3');
+$matrix = array('Буква' => $letters, 'Число' => $numbers);
+echo "<p>Начало: {$matrix['Буква'][0]}  </p>";
+foreach ($matrix as $array => $list)
+{
+    echo '<ul>';
+    foreach ($list as $key => $value)
+    {
+        echo "<li>$array [$key] = $value ";
+    }
+    echo '</ul>';
+}
+<?php
+
+echo '<title>PHP - Простий XML</title>';
+$xml = simplexml_load_file('catalog.xml')
+or die('Неможливо загрузити дані!');
+echo 'Перша книжка: '.$xml->book[0]->title.' для початківців<br>';
+echo 'Категорія: '.$xml->book[0]->category;
+<?php
+
+echo '<title>PHP - Простий XML</title>';
+$xml = simplexml_load_file('catalog.xml')
+or die('Неможливо загрузити дані!');
+
+$counter = 0;
+foreach ($xml->children() as $book)
+{
+    $counter++;
+    echo 'Книжка '.$counter.': ';
+    echo $book->title.' для початківців ['.$book->category.']<hr>';
+}
+<?php
+
+class Dog
+{
+    /**
+     * @var
+     */
+    private $age;
+    /**
+     * @var
+     */
+    private $weight;
+    /**
+     * @var
+     */
+    private $color;
+
+    /**
+     *
+     */
+    public function bark()
+    {
+        echo "ГАВ! ГАВ! <br>";
+    }
+
+    /**
+     * @param int $yrs
+     */
+    public function setAge(int $yrs)
+    {
+        $this->age = $yrs;
+    }
+
+    /**
+     * @param int $lbs
+     */
+    public function setWeight(int $lbs)
+    {
+        $this->weight = $lbs;
+    }
+
+    /**
+     * @param string $fur
+     */
+    public function setColor(string $fur)
+    {
+        $this->color = $fur;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+}
+
+$fido = new Dog();
+$fido->setAge(3);
+$fido->setWeight(15);
+$fido->setColor('коричневого');
+
+echo 'Шерсть Фидо '.$fido->getColor().' цвета<br>';
+echo 'Фидо '.$fido->getAge().' года<br>';
+echo 'Фидо весит '.$fido->getWeight().' кг<br>';
+$fido->bark();
+<?php
+
+$filestream = fopen('poem.txt', 'w')
+or die('Невозможно открить файл!');
+fwrite($filestream, 'Файл перезаписан!');
+fclose($filestream);
+<?php
+
+function drink(string $tmp = 'гарячий', string $flavor = 'чай')
+{
+    echo "Пийте $tmp $flavor.<br>";
+}
+drink();
+drink('холодний');
+drink('охолоджений', 'лимонад');
+
+function add(int ...$numbers)
+{
+    $total = 0;
+    foreach ($numbers as $num) {
+        $total += $num;
+    }
+    echo "<hr>Усього: $total";
+}
+add(1, 2, 3);
+<?php
+
+$city = 'Chernivtsi';
+$units = 'metric';
+$mode = 'xml';
+$id = '3084c69d6e7d7ad273ef019bfbd75fa2';
+
+$request = 'http://api.openweathermap.org/data/2.5/weather?'.
+'q='.$city.'&units='.$units.'&mode='.$mode.'&APPID='.$id;
+
+$xml = simplexml_load_file($request) or die('Неможливо загрузити дані!');
+
+try {
+    $xml->asXML('params.xml');
+    header('Location: params.xml');
+}
+catch (Exception $e)
+{
+    echo 'Помилка: '.$e->getMessage();
+}
+<?php
+
+interface Shape
+{
+    public function area();
+}
+
+class Polygon
+{
+    private $widht, $height;
+
+    function __construct(int $w = 4, int $h = 5)
+    {
+        $this->widht = $w;
+        $this->height = $h;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWidht(): int
+    {
+        return $this->widht;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+}
+
+class Rectangle extends Polygon implements Shape
+{
+    public function area()
+    {
+        return ($this->getWidht() * $this->getHeight());
+    }
+
+}
+
+class Triangle extends Polygon implements Shape
+{
+    public function area()
+    {
+        return ($this->getWidht() * $this->getHeight() / 2);
+    }
+}
+
+function getArea(Shape $shape)
+{
+    return $shape->area();
+}
+
+$rect = new Rectangle(8, 10);
+$trio = new Triangle(8, 10);
+echo "Площа прямокутника: ".getArea($rect).'<hr>';
+echo "Площа трикутника: ".getArea($trio);
+<?php
+
+$page_title = 'PHP - Пуплікація повідомлень';
+
+include ('includes/header.html');
+echo '<form action="process.php" method="POST" accept-charset="utf-8">
+Імя: <input name="first_name" type="text">
+Фамілія: <input name="last_name" type="text">
+<p>Тема:<br>
+<input name="subject" type="text" size="64"></p>
+<p>Повідомлення:<br>
+<textarea name="message" rows="5" cols="50"></textarea></p>
+<p><input type="submit" value="Відправити"></p>
+</form>';
+
+echo '<p><a href="forum.php">Повернутись до форуму</a></p>';
+include ('includes/footer.html');
+<?php
+
+$page_title = 'PHP - Помилки';
+
+include ('includes/header.html');
+
+function fail ($str)
+{
+    echo "<p>Будь ласка, укажіть $str.</p>";
+    echo '<p><a href="post.php">Написати повідомлення</a>';
+    include ('includes/footer.html');
+    exit();
+}
+
+if (isset($_POST['message']))
+{
+    if (!empty(trim($_POST['first_name'])))
+    {
+        $first_name = addslashes($_POST['first_name']);
+    }
+    else
+    {
+        fail('імя');
+    }
+
+    if (!empty(trim($_POST['last_name'])))
+    {
+        $last_name = addslashes($_POST['last_name']);
+    }
+    else
+    {
+        fail('фамілію');
+    }
+
+    if (!empty(trim($_POST['subject'])))
+    {
+        $subject = addslashes($_POST['subject']);
+    }
+    else
+    {
+        fail('тему');
+    }
+
+    if (!empty(trim($_POST['message'])))
+    {
+        $message = addslashes($_POST['message']);
+    }
+    else
+    {
+        fail('текст повідомлення');
+    }
+
+    require ('connect_db.php');
+
+    $sql = "INSERT INTO forum
+(first_name, last_name, subject, message, post_date)
+VALUES
+('$first_name', '$last_name', '$subject', '$message', NOW()) ";
+
+    $result = mysqli_query($dbc, $sql);
+}
+
+if (mysqli_affected_rows($dbc)!= 1)
+{
+    echo '<p>Помилка</p>'.mysqli_error($dbc);
+    mysqli_close($dbc);
+}
+else
+{
+    mysqli_close($dbc);
+    header('Location: forum.php');
+}
+<?php
+
+$filestream = fopen('manifesto.txt', 'r')
+    or die('Невозможно открить файл!');
+echo fread($filestream, filesize('manifesto.txt'));
+fclose($filestream);
+<?php
+
+$filestream = fopen('title.txt', 'r')
+or die('Невозможно открить файл');
+
+while($char = fgetc($filestream))
+{
+    echo $char.' * ';
+
+}
+fclose($filestream);
+<?php
+
+$filestream = fopen('manifesto.txt', 'r')
+    or die('Невозможно открить файл');
+while (!feof($filestream))
+{
+    echo fgets($filestream).'<br>';
+}
+fclose($filestream);
+<?php
+
+require ('connect_db.php');
+
+if (mysqli_ping($dbc))
+{
+    echo 'Сервер MySQL '. mysqli_get_server_info($dbc).' на '. mysqli_get_host_info($dbc);
+}
+<?php
+
+function supply (): array
+{
+    return array(75, 3.142, 'Супер PHP', True);
+}
+
+$array = supply();
+
+foreach ($array as $data)
+{
+    echo "Значення елемента: $data<br>";
+}
+<?php
+
+$url = 'http://www.kaspersky.ru/rss/news';
+$xml = simplexml_load_file($url) or die('Неможливо загрузити дані!');
+
+//include ('includes/rss-header.html');
+foreach ($xml->chanell->item as $item)
+{
+    echo '<a href="'.$item->link.'">' .$item->title.'</a>';
+    echo '<br><small>'.$item->pudDate.'</small><br>';
+    echo $item->description. '<hr>';
+}
+//include ('includes/rss-footer.html');
+<?php
+
+$number = 1;
+echo "Глобальне число: $number<br>";
+function show_local()
+{
+    $number = 100;
+    echo "Локальне число: $number<hr>";
+}
+
+show_local();
+function recur()
+{
+    global $number;
+    static $letter = 'A';
+    if ($number < 14)
+    {
+        echo "$number:$letter | ";
+        $number++;
+        $letter++;
+        recur();
+    }
+}
+recur();
+echo "<hr>Глобальне число: $number";
+<?php
+
+$str = 'Most Users usually find PHP useful.';
+echo "'$str'<br>Довжина строки: ".strlen($str);
+echo "<br>Перше входження 'us':  ".strpos($str, 'us');
+echo "<br>Останнє входження 'us':  ".strrpos($str, 'us');
+echo "<hr>Підстрока від першого входження 'us':  ".strstr($str, 'us');
+echo "<br>Підстрока від першого входження 'us' без врахування регістру:  ".stristr($str, 'us');
+echo "<hr>Символи від першого входження 'u':  ".strchr($str, 'u');
+echo "<hr>Символи від останнього входження 'u':  ".strrchr($str, 'u');
+<?php session_start();
+
+function kill_session()
+{
+    unset($_SESSION['user']);
+    unset($_SESSION['pass']);
+    session_destroy();
+    echo '<hr>Сессія перервана<br>';
+    echo 'Ідентифікатор сессії '.session_id().'<br>';
+    var_dump($_SESSION);
+}
+
+if (count($_SESSION) > 0)
+{
+    echo '<dl> ';
+    foreach ($_SESSION as $key => $value)
+    {
+        echo "<dt>Ключ: $key";
+        echo "<dd>Значення: $value";
+    }
+    echo '</dl><hr>';
+    echo 'Ідентифікатор сессії '.session_id().'<br>';
+    var_dump($_SESSION);
+    kill_session();
+}
+else
+{
+    echo 'Будь ласка, <a href="session_form.html">авторизуйтесь</a>';
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Веб-форма сесії</title>
+</head>
+<body>
+<form name="entry" method="POST" action="session_set.php">
+    <fieldset>
+        <legend>В якості імені: тільки букви</legend>
+        Імя: <input type="text" name="user" >
+        Пароль: <input type="password" name="pass" >
+        <p>В якості паролю: тільки символи A-Z a-z 0-9 (не менше 8 символів).</p>
+        <input type="submit" value="Авторизація">
+    </fieldset>
+</form>
+</body>
+</html>
+<?php session_start();
+
+if(isset($_SESSION['user']))
+{
+    $user = $_SESSION['user'];
+    echo "<h1>Ласкаво просимо, $user!</h1><hr>";
+    echo '<a href="session_data.php">Перегляд сессій</a>';
+}
+else
+{
+    echo 'Будь ласка, <a href="session_form.html">авторизуйтесь</a>';
+}
+<?php session_start();
+
+function reject($entry)
+{
+    echo "Недопустимо: $entry <br>";
+    echo 'Будь ласка, <a href="session_form.html"> авторизуйтесь</a>';
+    exit();
+}
+
+if(isset($_POST['user']))
+{
+    $user = trim($_POST['user']);
+    if(!ctype_alnum($user))
+    {
+        reject('Імя користувача');
+    }
+
+    if(isset($_POST['pass']))
+    {
+        $pass = trim($_POST['pass']);
+        if(!preg_match('/^[A-Za-z0-9. _]{8,}$/', $pass))
+            {reject('Пароль');}
+        else
+        {
+            $_SESSION['user'] = $user;
+            $_SESSION['pass'] = $pass;
+            header('Location: session_get.php');
+        }
+    }
+}
+else
+{
+    header('Location: session_form.html');
+}
+<?php
+
+if ($_SERVER['REQUEST_METHOD']!= 'POST')
+{
+  echo '
+  <form action="single.php" method="POST">
+  <fieldset>
+  <legend>Необхідно указати коментарій!</legend>
+  <textarea rows="5" cols="40" name="comment">
+  </textarea>
+  </fieldset>
+  <p><input type="submit" ></p>
+  </form>';
+}
+else
+{
+    if (!empty ($_POST['comment']))
+    {
+        $comment = $_POST['comment'];
+        echo "Коментарій: $comment";
+    }
+    else
+    {
+        $comment = NULL;
+        echo 'Необхідно указати коментарій!';
+    }
+}
+<?php
+
+$cars = array('УАЗ' => 'Патриот', 'ГАЗ' => 'Сайбер', 'ВАЗ' => 'Нива');
+echo '<dl><dt>Початковий порядок елементів:<dd>';
+foreach ($cars as $key => $value)
+{
+    echo ' &bull; ', $key. ' '.$value;
+}
+
+asort($cars);
+echo '<dl><dt>Сортіровка по значенню:<dd>';
+foreach ($cars as $key => $value)
+{
+    echo ' &bull; ', $key. ' '.$value;
+}
+
+ksort($cars);
+echo '<dl><dt>Сортіровка по ключу:<dd>';
+foreach ($cars as $key => $value)
+{
+    echo ' &bull; ', $key. ' '.$value;
+}
+echo '</dl>';
+<?php
+
+$a = NULL;
+$b = 8;
+$c = 'PHP - це весело!';
+$verb = ($b == 1)? 'угадали': 'не угадали';
+echo "Ви $verb! Ви назвали число $b. <hr>";
+$parity = ($b% 2!= 0)? 'непарне': 'парне';
+echo "$b - $parity число<hr>";
+$result = $a?? $b?? $c; echo "abc: $result <br>";
+$result = $c?? $b?? $a; echo "cba: $result <br>";
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PHP форма з збереженням</title>
+</head>
+<body>
+<form method="POST" action="<?php $_SERVER['PHP_SELF']?>" >
+    <p>Ім'я:
+        <input type="text" name="name" value="<?php if (isset($_POST['name']))
+            echo $_POST['name'];?>"></p>
+    <p>Email:
+        <input type="text" name="email" value="<?php if (isset($_POST['email']))
+            echo $_POST['email'];?>"></p>
+    <p><input type="submit"></p>
+</form>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    $errors = array();
+    if (empty($_POST['name']))
+    {
+        $errors[] = 'name';
+    }
+    else
+    {
+        $name = trim($_POST['name']);
+    }
+
+    if (empty($_POST['email']))
+    {
+        $errors[] = 'email';
+    }
+    else
+    {
+        $email = trim($_POST['email']);
+    }
+
+    if (!empty($errors))
+    {
+        echo 'Помилкака! Будь ласка укажіть ';
+        foreach ($errors as $msg)
+        {
+            echo " - $msg";
+        }
+    }
+    else
+    {
+        echo "Форма відправлена! Дякую, $name ";
+    }
+}
+?>
+</body>
+</html>
+<! DOCTYPE  HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<title>Начинаєм роботу с PHP</title>
+</head>
+<body>
+<?php
+#Тут має бути PHP код
+$phrase = 'Правда редко бивает чистой';
+$author = 'Оскар Уайльд';
+echo $phrase;
+echo "<p> Часто говорят что <q>$phrase</q></p>";
+$phrase = $phrase. ' и никогда не бивает простой';
+echo "<p><q>$phrase</q><site>$author</site></p>";
+?>
+</body>
+</html>
+<?php
+
+$str = 'SQL in easy steps features SQL queries';
+echo "'$str'<br>'SQL' лічильник: ".substr_count($str, 'SQL');
+echo '<hr>Позиція 27: '.substr($str, 27);
+echo '<hr>Позиція 4, довжина 13: '.substr($str, 4, 13);
+$sub = 'PHP & MySQL';
+$str = substr_replace($str, $sub, 0, 3);
+echo "<hr>'$str'";
+<?php
+
+echo 'Веб-сервер: '.$_SERVER['SERVER_SOFTWARE'].'<br>';
+echo 'Сценарий: '.$_SERVER['PHP_SELF'].'<br>';
+echo 'Имя хоста: '.$_SERVER['HTTP_HOST'].'<br>';
+echo 'Метод запроса: '.$_SERVER['REQUEST_METHOD'];
+foreach ($_GET as $key => $value)
+{
+    echo '<hr>HTTP GET: '.$key.'='.$value;
+}
+<?php
+
+$number = 2;
+$letter = 'Б';
+
+switch ($number)
+{
+    case 1: echo "Одиничка<br>";
+    break;
+    case 2: echo "Двойка<br>";
+    break;
+    case 3: echo "Тройка<br>";
+    break;
+    default: echo "Невідоме число<br>";
+}
+
+switch ($letter)
+{
+    case 'А': echo 'Буква "А"<br>';
+        break;
+    case 'Б': echo 'Буква "Б"<br>';
+        break;
+    case 'В': echo 'Буква "В"<br>';
+        break;
+    default: echo "Невідома буква<br>";
+}
+switch ($number)
+{
+    case 0:
+    case 1:
+    case 2: echo "Менше чим 3<br>";
+    break;
+    default: echo "3 або більше, або менше 0";
+}
+<?php
+
+$filestream = fopen('index.html', 'r');
+$data = array('PHP', 1, 2.3, TRUE, NULL, array(), new Directory, $filestream);
+foreach ($data as $type)
+{
+    var_dump($type);
+    echo '<br> ';
+}
+fclose($filestream);
+echo getType($filestream);
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Вигрузка файлів</title>
+</head>
+<body>
+<form action="<?php $_SERVER['PHP_SELF']?>"
+      method="POST" enctype="multipart/form-data" >
+    Виберіть зображення для вигрузки на сервер:
+    <input type="file" name="image" >
+    <input type="submit" value="Відправити файл">
+</form>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    $name = $_FILES['image']['name'];
+    $temp = $_FILES['image']['tmp_name'];
+    $size = $_FILES['image']['size'];
+    $exp = pathinfo($name, PATHINFO_EXTENSION);
+    $exp = strtolower($exp);
+    if($exp!= 'png' && $exp!= 'jpg' && $exp!= 'gif')
+    {
+        echo 'Зображення повинно бути формату PNG, JPG або GIF ';
+        exit();
+    }
+
+    if ($size > 512000)
+    {
+        echo 'Файл не повинен перевищувати 500 КБ';
+        exit();
+    }
+
+    if (file_exists($name))
+    {
+        echo 'Файл '.$name.' уже був загружен';
+        exit();
+    }
+
+    try
+    {
+        move_uploaded_file($temp, $name);
+        echo 'Файл вигружен: '.$name;
+        echo '<br><img src="'.$name.'">';
+    }
+    catch (Exception $e)
+    {
+        echo 'Збій вигрузки файла!';
+    }
+}
+
+?>
+</body>
+</html>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PHP проверка данних</title>
+</head>
+<body>
+<form action="valid_handler.php" method="POST">
+    <fieldset>
+        <legend>Введите количество и адрес email</legend>
+        <p>Количество: <input type="text" name="quantity"></p>
+        <p>Адрес email: <input type="text" name="email"></p>
+    </fieldset>
+    <p><input type="submit" ></p>
+</form>
+</body>
+</html>
+<?php
+if (!empty($_POST['quantity']))
+{
+    $quantity = $_POST['quantity'];
+    if (!is_numeric($quantity))
+    {
+        $quantity = NULL;
+        echo 'Количество необходимо указать в виде числа<br>';
+    }
+}
+else{
+    $quantity = NULL;
+    echo 'Необходимо указать количество <br>';
+}
+
+if (!empty($_POST['email']))
+{
+    $email = $_POST['email'];
+    $pattern = '/\b[\w. -]+@[\w. -]+\.[A-Za-z]{2,6}\b/';
+    if (!preg_match($pattern, $email))
+    {
+        $email = NULL;
+        echo "Адрес електронной почти указан в недопустимом формате";
+    }
+}
+else
+{
+    $email = NULL;
+    echo "Необходимо указать адрес електронной почти";
+}
+
+if (($quantity!= NULL) && ($email!= NULL))
+{
+    echo "Адрес email: $email<br>Количество: $quantity ";
+}
+?>
+<?php
+
+include ('includes/weather-header.html');
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    $city = (empty($_POST['city']))? "Moscow" : $_POST['city'];
+    $units = 'metric';
+    $mode ='xml';
+    $id = '3084c69d6e7d7ad273ef019bfbd75fa2';
+    $request = 'http://api.openweathermap.org/data/2.5/weather?'.
+        'q='.$city.'&units='.$units.'&mode='.$mode.'&APPID='.$id;
+    $xml = simplexml_load_file($request) or die('Неможливо загрузити дані!');
+    $icon = 'http://openweathermap.org/img/w/'.$xml->weather['icon'].'.png';
+    echo '<h1>Сьогодні в місті '.$xml->city['name'];
+    echo ': '.$xml->weather[''].'<img src='.$icon.'></h1>';
+    echo '<ul><li>Температура: '.$xml->temperature['value'];
+    echo '&deg; '.$xml->temperature[''].' C';
+    echo '<li>Вітер: '.$xml->wind->speed['value'].' м/с';
+    echo '<li>Влажність: '.$xml->humidity['value'].'&#37;</ul>';
+}
+
+echo '<form method="POST" action="weather.php">';
+echo '<fieldset><legend>Введіть назву міста</legend>';
+echo '<input type="text" name="city">';
+echo '<input type="submit" name="submission" value = "Прогноз">';
+echo '</fieldset></form>';
+include ('includes/weather-footer.html');
+<?php
+
+$numbers = array(10, 20, 30);
+
+echo "<dt>Цикл while: ";
+$i = 0;
+while ($i < 3)
+{
+    echo "<dd>Елемент $i = $numbers[$i] ";
+    $i++;
+}
+
+echo "<dt>Цикл do while: ";
+$i = 0;
+do
+{
+    echo "<dd>Елемент $i = $numbers[$i] ";
+    $i++;
+}
+while($i < 3);
+<?php
+
+$poem = "\r\n\tНет, не смотрел никто из нас ";
+$poem .= "\r\n\tС такой тоской в глазах ";
+$poem .= "\r\n\tНа лоскуток голубизни ";
+$poem .= "\r\n\tВ тюремних небесах ";
+
+$filename = 'poem.txt';
+$filestream = fopen($filename, 'w')
+    or die('Невозможно открить файл!');
+
+$num = fwrite($filestream, $poem);
+if ($num)
+{
+    echo "$num байтов записано в файл $filename";
+}
+fclose($filestream);
